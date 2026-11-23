@@ -41,7 +41,8 @@ int main(void) {
         printMaze(player);
 
         if (checkGameClear(player)) {
-            printf("Success! Moved: %d\n", player.moveCount);
+            printf("Success!\n");
+            printf("Moved: %d\n", player.moveCount);
             break;
         }
 
@@ -113,11 +114,15 @@ int movePlayer(Player* player, char command) {
         return 0;
     }
 
+    if (nextRow < 0 || nextRow >= ROWS || nextCol < 0 || nextCol >= COLS) {
+        return 0;
+    }
+
     if (maze[nextRow][nextCol] == '#') {
         return 0;
     }
 
-    if (maze[nextRow][nextCol] == 'E' && !player->hasKey) {
+    if (maze[nextRow][nextCol] == 'E' && player->hasKey == 0) {
         printf("You can't exit because you don't have a key.\n");
         return 0;
     }
@@ -135,5 +140,7 @@ int movePlayer(Player* player, char command) {
 }
 
 int checkGameClear(Player player) {
-    return maze[player.row][player.col] == 'E' && player.hasKey;
+    if (maze[player.row][play.col] == 'E' && player.hasKey == 1) {
+        return 1;
+    }
 }
