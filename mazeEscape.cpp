@@ -54,7 +54,7 @@ int main(void) {
         command = input[0];
 
         if (command == 'q' || command == 'Q') {
-            printf("게임을 종료합니다.\n");
+            printf("Game End.\n");
             break;
         }
 
@@ -62,7 +62,7 @@ int main(void) {
             player.moveCount++;
         }
         else {
-            printf("이동할 수 없습니다. 벽이거나 잘못된 입력입니다.\n");
+            printf("Can't move. Wall or wrong input.\n");
         }
     }
 
@@ -73,7 +73,7 @@ void printMaze(Player player) {
     int row;
     int col;
 
-    printf("\n열쇠: %s | 이동 횟수: %d\n", player.hasKey ? "획득" : "미획득", player.moveCount);
+    printf("\nKey: %s | Moved: %d\n", player.hasKey ? "collected" : "uncollected", player.moveCount);
 
     for (row = 0; row < ROWS; row++) {
         for (col = 0; col < COLS; col++) {
